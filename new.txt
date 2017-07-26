@@ -1,0 +1,131 @@
+http://www.webhek.com/draw-a-stickman
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+替换文本的空格：($('input').val()).replace(/\s/g,'')
+\s  匹配任何空白字符，包括空格、制表符、换页符等。等价于 [ \f\n\r\t\v]
+/g   全文匹配
+/i  表示匹配的时候不区分大小写
+/m 表示多行匹配，什么是多行匹配呢？就是匹配换行符两端的潜在匹配。影响正则中的^$符号
+
+
+-----------------------响应式
+@media only screen and (max-width: 500px) { }
+
+-----------------------定义div高度与宽度一样
+var width =$(".aa").width();
+$(".aa").height(width); 
+$(window).resize(function(){ 
+    $(".aa").height(width); 
+});
+
+-----------------------手机端页面初始化
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://fmb.fmsecret.cn/fm-html5/js/weiapi.js"></script>
+<script src="http://fmb.fmsecret.cn/fm-html5/js/jquery-1.10.1.min.js"></script>
+<script src="http://fmb.fmsecret.cn/fm-html5/js/angular.min.js"></script>
+<script src="http://fmb.fmsecret.cn/fm-html5/js/base.js" ></script>
+request.QueryString()
+-----------------------判断url的参数值是否为空：     
+  xx && xx != 'null' && xx != '(null)'
+
+-----------------------CSS控制文字超过两行或三行就显示省略号
+{overflow: hidden;
+ text-overflow: ellipsis;
+ display: -webkit-box;
+ -webkit-line-clamp: 2;
+ -webkit-box-orient: vertical;}
+
+word-wrap: break-word;
+word-break: normal; 
+
+-----------------------字符串转数字
+JS整数     parseInt  
+浮点数	parseFloat  
+保留两位小数     toFixed(2)
+
+-----------------------URL编码解码
+window.location.href=
+JS编码：
+encodeURIComponent
+JS解码：
+decodeURIComponent
+
+-----------------------微信IOS标题显示问题
+var $body = $('body');
+document.title = 'the title you want to set';
+var $iframe = $("<iframe style='display:none;' src='/favicon.ico'></iframe>");
+$iframe.on('load',function() {
+   setTimeout(function() {
+     $iframe.off('load').remove();
+   }, 0);
+}).appendTo($body);
+
+-----------------------JS 时间戳转换
+function add(m){return m<10?'0'+m:m }
+function timeline(time){
+       if (time == null) {
+	return '';
+       }else{
+	var d = new Date(time/1000 * 1000);    //根据时间戳生成的时间对象
+	var date = add(d.getMonth() + 1) + "/" +add(d.getDate()) + " " +add(d.getHours())+':'+add(d.getMinutes());
+	 return date;
+      }
+}
+
+-----------------------数组加元素 ，删除元素
+bodWriter.push(id);
+
+for(var i=0; i<bodWriter.length; i++) {
+                if(bodWriter[i] == id) {
+                  bodWriter.splice(i, 1);
+                  break;
+                }
+            }
+
+-----------------------根据json数组里的值做做升序降序
+obj.sort(sortBy('b', false, parseInt));
+---'b'为参数名  false,true升降序 
+var sortBy = function (filed, rev, primer) {
+    rev = (rev) ? -1 : 1;
+    return function (a, b) {
+        a = a[filed];
+        b = b[filed];
+        if (typeof (primer) != 'undefined') {
+            a = primer(a);
+            b = primer(b);
+        }
+        if (a < b) { return rev * -1; }
+        if (a > b) { return rev * 1; }
+        return 1;
+    }
+};
+
+-----------------------判断是IE浏览器
+if(!!window.ActiveXObject || "ActiveXObject" in window){
+    console.log('是IE浏览器')
+}else{
+     console.log('不是IE浏览器')
+}
+
+-----------------------禁止页面缓存
+<!-- 禁止浏览器从本地缓存中调阅页面。-->
+<meta http-equiv="pragram" content="no-cache">
+<!--网页不保存在缓存中，每次访问都刷新页面。-->
+<meta http-equiv="cache-control" content="no-cache, must-revalidate">
+<!--同上面意思差不多，必须重新加载页面-->
+<!--网页在缓存中的过期时间为0，一旦网页过期，必须从服务器上重新订阅-->
+<meta http-equiv="expires" content="0">
+
+
+------------------------处理字符串的空格、回车、换行等问题
+str.replace(/\ +/g,""));//去掉空格
+str.replace(/[ ]/g,""));    //去掉空格
+str.replace(/[\r\n]/g,"\n"));//去掉回车换行
+
+str.replace(/\n/g,'\r\n')  //回车符转回车
